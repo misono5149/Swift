@@ -10,24 +10,31 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var num:Double? = 0
+    var new_num:Double? = 0
+    var kigo_input:Bool?
+    var result_num:Double? = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
     @IBOutlet weak var entry_label: UILabel!
-    var num:Int? = 0
     @IBOutlet weak var s: UILabel!
-    @IBAction func reset(_ sender: UIButton) {
-        num = Int(s.text!)
-        self.s.text = String(num! * 0 + 1)
+    @IBAction func Reset(_ sender: UIButton) {
+        num = Double(s.text!)
+        self.s.text = String(num! * 0)
+    }
+   
+    @IBAction func Numbers(_ sender: UIButton) {
+        num = Double(s.text!)
+        self.s.text = String(num! * 0)
     }
     
     
 }
+
 
