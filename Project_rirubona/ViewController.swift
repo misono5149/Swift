@@ -20,8 +20,8 @@ enum SelectedButtonTag: Int {
 }
 class ViewController: UIViewController {
 
-    var first_Number:Double? = nil
-    var second_Number:Double? = nil
+    var first_Number:Double?
+    var second_Number:Double?
     var temp_Number:Double? = 0
     var If_click_Operation:Bool? = false
     var Is_it_Double:Bool? = false
@@ -38,25 +38,25 @@ class ViewController: UIViewController {
     @IBOutlet weak var Screen: UILabel!
     @IBAction func Reset(_ sender: UIButton) {
         self.Screen.text = "0"
-        first_Number? *= 0.0
-        second_Number? *= 0.0
-        temp_Number? *= 0.0
+        first_Number = nil
+        second_Number = nil
+        temp_Number! = 0.0
     }
     @IBAction func numbers(_ sender: UIButton) {
         if(first_Number == nil)
         {
             switch sender.tag
             {
-                case SelectedButtonTag.Zero.rawValue: self.Screen.text = "0"; first_Number! = 0
-                case SelectedButtonTag.First.rawValue: self.Screen.text = "1"; first_Number! = 1
-                case SelectedButtonTag.Second.rawValue: self.Screen.text = "2"; first_Number! = 2
-                case SelectedButtonTag.Third.rawValue: self.Screen.text = "3"; first_Number! = 3
-                case SelectedButtonTag.Forth.rawValue: self.Screen.text = "4"; first_Number! = 4
-                case SelectedButtonTag.Fifth.rawValue: self.Screen.text = "5"; first_Number! = 5
-                case SelectedButtonTag.Sixth.rawValue: self.Screen.text = "6"; first_Number! = 6
-                case SelectedButtonTag.Sevneth.rawValue: self.Screen.text = "7"; first_Number! = 7
-                case SelectedButtonTag.Eighth.rawValue: self.Screen.text = "8"; first_Number! = 8
-                case SelectedButtonTag.Nineth.rawValue: self.Screen.text = "9"; first_Number! = 9
+                case SelectedButtonTag.Zero.rawValue: self.Screen.text = "0"; first_Number = 0
+                case SelectedButtonTag.First.rawValue: self.Screen.text = "1"; first_Number = 1
+                case SelectedButtonTag.Second.rawValue: self.Screen.text = "2"; first_Number = 2
+                case SelectedButtonTag.Third.rawValue: self.Screen.text = "3"; first_Number = 3
+                case SelectedButtonTag.Forth.rawValue: self.Screen.text = "4"; first_Number = 4
+                case SelectedButtonTag.Fifth.rawValue: self.Screen.text = "5"; first_Number = 5
+                case SelectedButtonTag.Sixth.rawValue: self.Screen.text = "6"; first_Number = 6
+                case SelectedButtonTag.Sevneth.rawValue: self.Screen.text = "7"; first_Number = 7
+                case SelectedButtonTag.Eighth.rawValue: self.Screen.text = "8"; first_Number = 8
+                case SelectedButtonTag.Nineth.rawValue: self.Screen.text = "9"; first_Number = 9
                 default:break
             }
         }
@@ -65,16 +65,19 @@ class ViewController: UIViewController {
             first_Number! *= 10
             switch sender.tag
             {
-            case SelectedButtonTag.Zero.rawValue: second_Number! = 0 ; first_Number! += second_Number!; self.Screen.text = String(describing: first_Number);
-            case SelectedButtonTag.First.rawValue: second_Number! = 1 ; first_Number! += second_Number!; self.Screen.text = String(describing: first_Number);
-            case SelectedButtonTag.Second.rawValue: second_Number! = 2 ; first_Number! += second_Number!; self.Screen.text = String(describing: first_Number);
-            case SelectedButtonTag.Third.rawValue: second_Number! = 3 ; first_Number! += second_Number!; self.Screen.text = String(describing: first_Number);
-            case SelectedButtonTag.Forth.rawValue: second_Number! = 4 ; first_Number! += second_Number!; self.Screen.text = String(describing: first_Number);
-            case SelectedButtonTag.Fifth.rawValue: second_Number! = 5 ; first_Number! += second_Number!; self.Screen.text = String(describing: first_Number);
-            case SelectedButtonTag.Sixth.rawValue: second_Number! = 6 ; first_Number! += second_Number!; self.Screen.text = String(describing: first_Number);
-            case SelectedButtonTag.Sevneth.rawValue: second_Number! = 7 ; first_Number! += second_Number!; self.Screen.text = String(describing: first_Number);
-            case SelectedButtonTag.Eighth.rawValue: second_Number! = 8 ; first_Number! += second_Number!; self.Screen.text = String(describing: first_Number);
-            case SelectedButtonTag.Nineth.rawValue: second_Number! = 9 ; first_Number! += second_Number!; self.Screen.text = String(describing: first_Number);
+            case SelectedButtonTag.Zero.rawValue: second_Number = 0 ;
+            second_Number = 0;
+            first_Number? += second_Number!;
+            self.Screen.text = String(describing: first_Number!);
+            case SelectedButtonTag.First.rawValue: second_Number = 1 ; second_Number = 1; first_Number? += second_Number!; self.Screen.text = String(describing: first_Number!);
+            case SelectedButtonTag.Second.rawValue: second_Number = 2 ; second_Number = 2; first_Number? += second_Number!; self.Screen.text = String(describing: first_Number!);
+            case SelectedButtonTag.Third.rawValue: second_Number = 3 ; second_Number = 3; first_Number? += second_Number!; self.Screen.text = String(describing: first_Number!);
+            case SelectedButtonTag.Forth.rawValue: second_Number = 4 ;second_Number = 4; first_Number? += second_Number!; self.Screen.text = String(describing: first_Number!);
+            case SelectedButtonTag.Fifth.rawValue: second_Number = 5 ; second_Number = 5; first_Number? += second_Number!; self.Screen.text = String(describing: first_Number!);
+            case SelectedButtonTag.Sixth.rawValue: second_Number = 6 ; second_Number = 6; first_Number? += second_Number!; self.Screen.text = String(describing: first_Number!);
+            case SelectedButtonTag.Sevneth.rawValue: second_Number = 7 ; second_Number = 7; first_Number? += second_Number!; self.Screen.text = String(describing: first_Number!);
+            case SelectedButtonTag.Eighth.rawValue: second_Number = 8 ; second_Number = 8; first_Number? += second_Number!; self.Screen.text = String(describing: first_Number!);
+            case SelectedButtonTag.Nineth.rawValue: second_Number = 9 ; second_Number = 9; first_Number? += second_Number!; self.Screen.text = String(describing: first_Number!);
             default:break
             }
         }
