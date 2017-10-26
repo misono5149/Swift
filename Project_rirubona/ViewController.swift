@@ -17,12 +17,20 @@ enum SelectedButtonTag: Int {
     case Sevneth
     case Eighth
     case Nineth
+    case result = 50
+    case plus = 100
+    case minus
+    case multi
+    case divide
+    case percent
+    
 }
 class ViewController: UIViewController {
 
     var first_Number:Double?
     var second_Number:Double?
     var temp_Number:Double? = 0
+    var result_Number:Double?
     var If_click_Operation:Bool? = false
     var Is_it_Double:Bool? = false
     
@@ -42,6 +50,29 @@ class ViewController: UIViewController {
         second_Number = nil
         temp_Number! = 0.0
     }
+    @IBAction func Calculate(_ sender: UIButton) {
+     if(result_Number == nil) // 첫 계산
+     {
+       if(first_Number == nil && second_Number == nil)
+       {Result_display(<#T##sender: UIButton##UIButton#>)}
+       else{
+        temp_Number = first_Number
+        
+            
+        }
+     }
+     else                   // 이미 결과값에서 추가 계산, 플래그 추가 해야함.
+     {
+        
+       
+     }
+        
+        
+    }
+    @IBAction func Result_display(_ sender: UIButton) {
+        self.Screen.text = String(result_Number!);
+    }
+    
     @IBAction func numbers(_ sender: UIButton) {
         if(first_Number == nil)
         {
