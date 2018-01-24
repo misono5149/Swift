@@ -23,6 +23,9 @@ enum SelectedButtonTag: Int {
     case multi
     case divide
     case percent
+    case sin = 200
+    case cos
+    case tan
     
 }
 class ViewController: UIViewController {
@@ -31,8 +34,9 @@ class ViewController: UIViewController {
     var second_Number:Double?
     var temp_Number:Double? = 0
     var result_Number:Double?
-    var If_click_Operation:Bool? = false
     var Is_it_Double:Bool? = false
+    var flag = 0
+    var temp_flag = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,31 +52,115 @@ class ViewController: UIViewController {
         self.Screen.text = "0"
         first_Number = nil
         second_Number = nil
+        result_Number = nil
         temp_Number! = 0.0
+        flag = 0;
+        temp_flag = 0;
+    }
+    @IBAction func sankaku(_ sender: UIButton) { // 개발중
+        if(first_Number == nil) //입력한 수가 없었을때
+        {
+            self.Screen.text = "Error first press the number"
+            temp_Number! = 0.0
+            flag = 0;
+        }
+        else{
+        switch sender.tag
+        {
+        case SelectedButtonTag.sin.rawValue: self.Screen.text = "Sin"; flag = 200; result_Number = sin(first_Number! * .pi / 180); self.Screen.text = String(describing: result_Number!);
+        case SelectedButtonTag.cos.rawValue: self.Screen.text = "Cos"; flag = 201; result_Number = cos(first_Number! * .pi / 180); self.Screen.text = String(describing: result_Number!);
+        case SelectedButtonTag.tan.rawValue: self.Screen.text = "Tan"; flag = 202; result_Number = tan(first_Number! * .pi / 180); self.Screen.text = String(describing: result_Number!);
+        default:break
+            }
+        }
     }
     @IBAction func Calculate(_ sender: UIButton) {
-     if(result_Number == nil) // 첫 계산
-     {
-       if(first_Number == nil && second_Number == nil)
-       {Result_display(<#T##sender: UIButton##UIButton#>)}
-       else{
-        temp_Number = first_Number
-        
+    if(temp_Number == 0)
+    {
+        switch sender.tag // 연산기호 받았을때 temp에 처음 입력받은 수 저장.
+        {
+            case SelectedButtonTag.plus.rawValue: self.Screen.text = "+"; flag = 100; temp_Number = first_Number;
+                first_Number = 0.0
+            case SelectedButtonTag.minus.rawValue: self.Screen.text = "-"; flag = 101; temp_Number = first_Number;
+                first_Number = 0.0
+            case SelectedButtonTag.multi.rawValue: self.Screen.text = "x"; flag = 102; temp_Number = first_Number;
+                first_Number = 0.0
+            case SelectedButtonTag.divide.rawValue: self.Screen.text = "/"; flag = 103; temp_Number = first_Number;
+                first_Number = 0.0
+            case SelectedButtonTag.percent.rawValue: self.Screen.text = "%"; flag = 104; temp_Number = first_Number;
+                first_Number = 0.0
+        default:break
+        }
+    }
+    else{               // 연속 계산할때, 기존에 있던 temp랑 새로 입력받은 first랑 계산
+        temp_flag = flag //전에 누른 연산자 저장하고 뒤에있는거 계산
+        if(temp_flag == 100)
+        {
+            result_Number = temp_Number! + first_Number!
+        }
+        else if(temp_flag == 101)
+        {
+            result_Number = temp_Number! - first_Number!
+        }
+        else if(temp_flag == 102)
+        {
+            result_Number = temp_Number! * first_Number!
             
         }
-     }
-     else                   // 이미 결과값에서 추가 계산, 플래그 추가 해야함.
-     {
-        
+        else if(temp_flag == 103)
+        {
+            result_Number = temp_Number! / first_Number!
+            
+        }
+        else if(temp_flag == 104)
+        {
+            result_Number = (temp_Number?.truncatingRemainder(dividingBy: first_Number!))!
+        }
+        switch sender.tag // 연속 계산의 다음 연산자 받기 temp는 전에 계산한 결과가 temp로 들어간다.
+        {
+        case SelectedButtonTag.plus.rawValue: self.Screen.text = "+"; flag = 100; temp_Number = result_Number;
+        first_Number = 0.0
+        case SelectedButtonTag.minus.rawValue: self.Screen.text = "-"; flag = 101; temp_Number = result_Number;
+        first_Number = 0.0
+        case SelectedButtonTag.multi.rawValue: self.Screen.text = "x"; flag = 102; temp_Number = result_Number;
+        first_Number = 0.0
+        case SelectedButtonTag.divide.rawValue: self.Screen.text = "/"; flag = 103; temp_Number = result_Number;
+        first_Number = 0.0
+        case SelectedButtonTag.percent.rawValue: self.Screen.text = "%"; flag = 104; temp_Number = result_Number;
+        first_Number = 0.0
+        default:break
+        }
+    }
+}
+    @IBAction func Result_display(_ sender: UIButton) { //최종 연산 마지막으로 플레그들어온걸 계산함
        
-     }
-        
-        
+            if(flag == 100)
+            {
+                result_Number = temp_Number! + first_Number!
+            }
+            else if(flag == 101)
+            {
+                result_Number = temp_Number! - first_Number!
+            }
+            else if(flag == 102)
+            {
+                result_Number = temp_Number! * first_Number!
+                
+            }
+            else if(flag == 103)
+            {
+                result_Number = temp_Number! / first_Number!
+                
+            }
+            else if(flag == 104)
+            {
+                result_Number = (temp_Number?.truncatingRemainder(dividingBy: first_Number!))!
+            }
+        self.Screen.text = String(describing: result_Number!);
+        flag = 0
+        first_Number = 0
     }
-    @IBAction func Result_display(_ sender: UIButton) {
-        self.Screen.text = String(result_Number!);
-    }
-    
+
     @IBAction func numbers(_ sender: UIButton) {
         if(first_Number == nil)
         {
@@ -110,7 +198,7 @@ class ViewController: UIViewController {
             case SelectedButtonTag.Eighth.rawValue: second_Number = 8 ; second_Number = 8; first_Number? += second_Number!; self.Screen.text = String(describing: first_Number!);
             case SelectedButtonTag.Nineth.rawValue: second_Number = 9 ; second_Number = 9; first_Number? += second_Number!; self.Screen.text = String(describing: first_Number!);
             default:break
-            }
+            } // 입력값은 무조건 first_number로 들어감 second_number는 몇자리를 입력하기 위한 도구일뿐
         }
     }
 }
