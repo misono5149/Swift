@@ -198,9 +198,6 @@
                                 <state key="normal" title="Sin">
                                     <color key="titleColor" red="0.17506271600723267" green="0.084141068160533905" blue="0.55057728290557861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <action selector="sankaku:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WSs-16-7w4"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iED-G7-vDa">
                                 <rect key="frame" x="97" y="182" width="80" height="70"/>
@@ -217,6 +214,9 @@
                                 <state key="normal" title="Tan">
                                     <color key="titleColor" red="0.17506271600723267" green="0.084141068160533905" blue="0.55057728290557861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="sankaku:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TVj-iz-d5y"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="104" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AmL-Aa-Ra0">
                                 <rect key="frame" x="295" y="182" width="80" height="70"/>
@@ -226,7 +226,7 @@
                                     <color key="titleColor" red="0.17506271600723267" green="0.084141068160533905" blue="0.55057728290557861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="Calculate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0mi-Pu-1h7"/>
+                                    <action selector="Calculate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wuD-wK-DWm"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTP-Mf-frN">
